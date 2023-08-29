@@ -5,10 +5,7 @@ import org.apache.commons.csv.CSVRecord;
 import java.io.FileReader;
 import java.io.IOException;
 import java.io.Reader;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.HashMap;
-import java.util.List;
+import java.util.*;
 
 /**
  * Created by LaunchCode
@@ -95,7 +92,52 @@ public class JobData {
         loadData();
 
         // TODO - implement this method
-        return null;
+        // take an ArrayList of HashMaps (jobs), search for a value in all columns
+        // in the HashMap, return a list of all jobs that contain that value
+
+        ArrayList<HashMap<String, String>> jobs = new ArrayList<>();
+        HashSet<HashMap<String, String>> uniqueJobs = new HashSet<>();
+
+//        for (HashMap<String, String> job : allJobs) {
+//            for (Map.Entry<String, String> item : job.entrySet()) {
+//                if (item.getValue().contains(value)) {
+//                    jobs.add(job);
+//                }
+//            }
+//        }
+
+        for (HashMap<String, String> job : allJobs) {
+            boolean containsValue = false;
+            for (Map.Entry<String, String> item : job.entrySet()) {
+                if (item.getValue().contains(value)) {
+                    containsValue = true;
+                    break;
+                }
+            }
+            // add() method of HashSet Class.
+            // A boolean returned value will indicate if the addition of element succeeded.
+            // It will return true if it is, otherwise false.
+            if (containsValue && uniqueJobs.add(job)) {
+                jobs.add(job);
+            }
+        }
+
+//        for (HashMap<String, String> job : allJobs) {
+//            boolean containsValue = false;
+//            for (String jobValue : job.values()) {
+//                if (jobValue.contains(value)) {
+//                    containsValue = true;
+//                    break;
+//                }
+//            }
+//            if (containsValue && uniqueJobs.add(job)) {
+//                jobs.add(job);
+//            }
+//        }
+
+        System.out.println(jobs.size());
+//        System.out.println(jobs);
+        return jobs;
     }
 
     /**
