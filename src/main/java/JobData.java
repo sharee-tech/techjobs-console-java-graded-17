@@ -72,11 +72,11 @@ public class JobData {
 
             String aValue = row.get(column);
 
-            if (aValue.contains(value)) {
+            if (aValue.toLowerCase().contains(value.toLowerCase())) {
                 jobs.add(row);
             }
         }
-
+        System.out.println(jobs.size());
         return jobs;
     }
 
@@ -98,18 +98,10 @@ public class JobData {
         ArrayList<HashMap<String, String>> jobs = new ArrayList<>();
         HashSet<HashMap<String, String>> uniqueJobs = new HashSet<>();
 
-//        for (HashMap<String, String> job : allJobs) {
-//            for (Map.Entry<String, String> item : job.entrySet()) {
-//                if (item.getValue().contains(value)) {
-//                    jobs.add(job);
-//                }
-//            }
-//        }
-
         for (HashMap<String, String> job : allJobs) {
             boolean containsValue = false;
             for (Map.Entry<String, String> item : job.entrySet()) {
-                if (item.getValue().contains(value)) {
+                if (item.getValue().toLowerCase().contains(value.toLowerCase())) {
                     containsValue = true;
                     break;
                 }
@@ -122,21 +114,7 @@ public class JobData {
             }
         }
 
-//        for (HashMap<String, String> job : allJobs) {
-//            boolean containsValue = false;
-//            for (String jobValue : job.values()) {
-//                if (jobValue.contains(value)) {
-//                    containsValue = true;
-//                    break;
-//                }
-//            }
-//            if (containsValue && uniqueJobs.add(job)) {
-//                jobs.add(job);
-//            }
-//        }
-
         System.out.println(jobs.size());
-//        System.out.println(jobs);
         return jobs;
     }
 
