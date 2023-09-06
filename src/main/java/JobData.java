@@ -76,7 +76,6 @@ public class JobData {
                 jobs.add(row);
             }
         }
-        System.out.println(jobs.size());
         return jobs;
     }
 
@@ -113,8 +112,6 @@ public class JobData {
                 jobs.add(job);
             }
         }
-
-        System.out.println(jobs.size());
         return jobs;
     }
 
