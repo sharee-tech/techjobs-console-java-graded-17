@@ -71,7 +71,8 @@ public class JobData {
         for (HashMap<String, String> row : allJobs) {
 
             String aValue = row.get(column);
-
+// convert the search value and the values from the data
+// to lowercase before performing the comparison
             if (aValue.toLowerCase().contains(value.toLowerCase())) {
                 jobs.add(row);
             }
@@ -95,23 +96,16 @@ public class JobData {
         // in the HashMap, return a list of all jobs that contain that value
 
         ArrayList<HashMap<String, String>> jobs = new ArrayList<>();
-        HashSet<HashMap<String, String>> uniqueJobs = new HashSet<>();
 
         for (HashMap<String, String> job : allJobs) {
-            boolean containsValue = false;
-            for (Map.Entry<String, String> item : job.entrySet()) {
-                if (item.getValue().toLowerCase().contains(value.toLowerCase())) {
-                    containsValue = true;
+            for (String values : job.values()) {
+                // convert the search value and the values from the data
+                // to lowercase before performing the comparison
+                if (values.toLowerCase().contains(value.toLowerCase())) {
+                    jobs.add(job);
                     break;
                 }
             }
-            // add() method of HashSet Class.
-            // A boolean returned value will indicate if the addition of element succeeded.
-            // It will return true if it is, otherwise false.
-            if (containsValue && uniqueJobs.add(job)) {
-                jobs.add(job);
-            }
-        }
         return jobs;
     }
 
